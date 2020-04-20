@@ -47,11 +47,13 @@ public class Movment1 : MonoBehaviour
     {
         if (canTotem && Input.GetKeyDown(KeyCode.E))
         {
-            myLoadingTotem.activateTotem();
+            myLoadingTotem.activatingeTotem();
+            myLoadingTotem.currentTotem = currentTotem;
         }
         else if(!canTotem)
         {
             myLoadingTotem.desactivateLoading();
+            myLoadingTotem.currentTotem=null;
         }
     }
 
