@@ -9,9 +9,9 @@ public class LoadTotem : MonoBehaviour
     public Text textIndicator;
     public Transform textLoading;
 
-    public float currentAmount;
     public float speed;
     public GameObject currentTotem;
+    private float currentAmount;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,12 +38,12 @@ public class LoadTotem : MonoBehaviour
             }
             currentTotem.GetComponent<Totem>().actualcharge = currentAmount;
             loadingBar.fillAmount = currentTotem.GetComponent<Totem>().actualcharge/100;
+            if (currentAmount >= 100)
+            {
+                currentTotem.GetComponent<Totem>().active = true;
+                Invoke("desactivate", 1.0f);
+            }
 
-        }
-        else if(currentAmount==100)
-        {
-            currentTotem.GetComponent<Totem>().active = true;
-            this.gameObject.SetActive(false);
         }
     }
     public void activatingeTotem()
@@ -55,6 +55,10 @@ public class LoadTotem : MonoBehaviour
     {
         if(this.gameObject.activeSelf)
             this.gameObject.SetActive(false);
+    }
+    private void desactivate()
+    {
+        this.gameObject.SetActive(false);
     }
 
 }

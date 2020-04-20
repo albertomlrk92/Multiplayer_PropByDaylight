@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  actualcharge: 0
 --- !u!1 &565976748
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +861,7 @@ MonoBehaviour:
   jumpSpeed: 8
   canTotem: 0
   currentTotem: {fileID: 0}
-  myLoadingTotem: {fileID: 1066398172}
+  myLoadingBar: {fileID: 0}
 --- !u!54 &867299532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -946,8 +947,8 @@ MonoBehaviour:
   loadingBar: {fileID: 1306594275}
   textIndicator: {fileID: 1950223631}
   textLoading: {fileID: 435434146}
-  currentAmount: 0
-  speed: 5
+  speed: 30
+  currentTotem: {fileID: 0}
 --- !u!114 &1066398173
 MonoBehaviour:
   m_ObjectHideFlags: 0

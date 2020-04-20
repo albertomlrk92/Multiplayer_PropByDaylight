@@ -17,7 +17,7 @@ public class Movment1 : MonoBehaviour
 
     public bool canTotem = false;
     public GameObject currentTotem;
-    public LoadTotem myLoadingTotem;
+    public LoadTotem myLoadingBar;
 
     private Vector3 vel = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -47,13 +47,13 @@ public class Movment1 : MonoBehaviour
     {
         if (canTotem && Input.GetKeyDown(KeyCode.E))
         {
-            myLoadingTotem.activatingeTotem();
-            myLoadingTotem.currentTotem = currentTotem;
+            myLoadingBar.activatingeTotem();
+            myLoadingBar.currentTotem = currentTotem;
         }
         else if(!canTotem)
         {
-            myLoadingTotem.desactivateLoading();
-            myLoadingTotem.currentTotem=null;
+            myLoadingBar.desactivateLoading();
+            myLoadingBar.currentTotem=null;
         }
     }
 
