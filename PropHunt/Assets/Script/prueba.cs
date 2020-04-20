@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class prueba : MonoBehaviour
 {
+
+    // Soy un comentario de prueba
+
+
     // Start is called before the first frame update
     void Start()
     {
