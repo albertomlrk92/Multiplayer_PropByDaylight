@@ -36,8 +36,8 @@ public class LoadTotem : MonoBehaviour
                 textLoading.gameObject.SetActive(false);
                 //textIndicator.GetComponent<Text>().text = "DONE";
             }
-            currentTotem.GetComponent<Totem>().actualcharge = currentAmount / 100;
-            loadingBar.fillAmount = currentTotem.GetComponent<Totem>().actualcharge;
+            currentTotem.GetComponent<Totem>().actualcharge = currentAmount;
+            loadingBar.fillAmount = currentTotem.GetComponent<Totem>().actualcharge/100;
 
         }
         else if(currentAmount==100)
