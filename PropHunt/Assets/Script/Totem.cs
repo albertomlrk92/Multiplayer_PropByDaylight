@@ -6,14 +6,20 @@ public class Totem : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool active;
+    public float actualcharge;
     void Start()
     {
         active = false;
+        actualcharge = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(active)
+        {
+            Debug.Log("Totem active");
+        }
         
     }
     private void OnTriggerEnter(Collider other)
@@ -21,6 +27,7 @@ public class Totem : MonoBehaviour
         if(other.tag == "Player")
         {
             other.GetComponent<Movment1>().canTotem = true;
+            other.GetComponent<Movment1>().currentTotem = this.gameObject;
         }
     }
 
@@ -29,6 +36,7 @@ public class Totem : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<Movment1>().canTotem = false;
+            other.GetComponent<Movment1>().currentTotem = null;
         }
     }
 }
