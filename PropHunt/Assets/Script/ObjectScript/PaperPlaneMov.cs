@@ -33,9 +33,10 @@ public class PaperPlaneMov : MonoBehaviour
     void Update()
     {
         float dt = Time.deltaTime;
-
+        //Get axis
         inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
+
         if (canFly)
         {
 
@@ -57,16 +58,21 @@ public class PaperPlaneMov : MonoBehaviour
         }
         else
         {
+            //Jumping state
             if (jumping)
             {
+                //if the gameObject stoped to jump and start to fall, then start to move again
                 if(lastY>transform.position.y)
                 {
                     canFly = true;
                     jumping = false;
+                    //contrain rotation, not let the plane go crazy if colides
+                    rb.constraints = RigidbodyConstraints.FreezeRotation;
                 }
             }
             else
             {
+                //start to decelerate
                 if (rb.velocity.magnitude > 0.1)
                 {
                     rb.AddForce(-rb.velocity * 1 / maxSpeed);
@@ -81,25 +87,19 @@ public class PaperPlaneMov : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (canFly)
-            {
-                canFly = false;
-
-
-            }
-            else
+            if(!canFly)
             {
                 jump();
             }
         }
-        Debug.Log(rb.velocity.magnitude);
         lastY = transform.position.y;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         canFly = false;
-        rb.constraints = RigidbodyConstraints.FreezeAll;
+        //free constraints for let the plane falls by natural gravity
+        rb.constraints = RigidbodyConstraints.None;
     }
     public void jump()
     {

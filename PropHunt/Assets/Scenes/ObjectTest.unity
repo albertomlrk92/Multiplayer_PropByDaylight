@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 20
-  acceleration: 5
+  acceleration: 10
   deceleration: 0.5
   speed: 20
   angularSpeed: 2
@@ -229,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11475425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.336725, y: 1.61, z: 23.18936}
+  m_LocalPosition: {x: -13.336725, y: -3.47, z: 23.18936}
   m_LocalScale: {x: 2, y: 0.3, z: 2}
   m_Children:
   - {fileID: 207653948}
