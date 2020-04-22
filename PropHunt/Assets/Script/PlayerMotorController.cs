@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerMotorController : MonoBehaviour
 {
+    [SerializeField]
+    private Camera cam;
+
     private Vector3 velocity = Vector3.zero;
+    private Vector3 rotation = Vector3.zero;
+    private Vector3 cameraRotation = Vector3.zero;
+
+
     private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +24,7 @@ public class PlayerMotorController : MonoBehaviour
     void Update()
     {
         MakeItMove();
+        MakeItRotate();
     }
 
     //Gets movement vector
@@ -32,5 +40,25 @@ public class PlayerMotorController : MonoBehaviour
         {
             rb.MovePosition(rb.position + velocity * Time.deltaTime);
         }
+    }
+
+    public void Rotate(Vector3 _rotation)
+    {
+        rotation = _rotation;
+    }
+
+    void MakeItRotate()
+    {
+        rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
+
+        if(cam != null)
+        {
+            cam.transform.Rotate(-cameraRotation);
+        }
+    }
+
+    public void RotateCamera(Vector3 _camera)
+    {
+        cameraRotation = _camera;
     }
 }

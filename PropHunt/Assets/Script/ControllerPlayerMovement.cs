@@ -8,8 +8,12 @@ public class ControllerPlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float speedPlayer = 5f;
-    private PlayerMotorController motor;
 
+    [SerializeField]
+    private float lookSensivility = 3f;
+
+
+    private PlayerMotorController motor;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,5 +35,23 @@ public class ControllerPlayerMovement : MonoBehaviour
 
         //apply movement
         motor.Move(velocity);
+
+        //Rotation HORIZONTAL, we will turn the player to look around him.
+        float yRot = Input.GetAxisRaw("Mouse X");
+
+        Vector3 rotationPlayer = new Vector3(0f, yRot, 0f) * lookSensivility;
+
+        //Apply
+        motor.Rotate(rotationPlayer);
+
+        //Rotation VERTICAL, we will turn the camera in a vertical axis, why? We dont wanna turn the player vertically only camera.
+        float xRot = Input.GetAxisRaw("Mouse Y");
+
+        Vector3 cameraRotation = new Vector3(xRot, 0f, 0f) * lookSensivility;
+
+        //Apply 
+        motor.RotateCamera(cameraRotation);
+
+
     }
 }
