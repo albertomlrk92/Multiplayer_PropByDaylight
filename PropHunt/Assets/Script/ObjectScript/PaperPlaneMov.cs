@@ -21,11 +21,12 @@ public class PaperPlaneMov : MonoBehaviour
     private Vector3 vel = new Vector3(0.0f, 0.0f, 0.0f);
     private Vector3 angularVel = new Vector3(0.0f, 0.0f, 0.0f);
     private Rigidbody rb;
-    private float startDes = 0.0f;
-    private float journeyLength = 0.0f;
+    private bool jumping = false;
+    private float lastY;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        lastY = transform.position.y;
     }
 
     // Update is called once per frame
@@ -56,15 +57,26 @@ public class PaperPlaneMov : MonoBehaviour
         }
         else
         {
-            if (rb.velocity.magnitude > 0.1)
+            if (jumping)
             {
-                rb.AddForce(-rb.velocity * 1 / maxSpeed);
-                vel = rb.velocity;
+                if(lastY>transform.position.y)
+                {
+                    canFly = true;
+                    jumping = false;
+                }
             }
             else
             {
-                rb.velocity = Vector3.zero;
-                vel = Vector3.zero;
+                if (rb.velocity.magnitude > 0.1)
+                {
+                    rb.AddForce(-rb.velocity * 1 / maxSpeed);
+                    vel = rb.velocity;
+                }
+                else
+                {
+                    rb.velocity = Vector3.zero;
+                    vel = Vector3.zero;
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -76,14 +88,24 @@ public class PaperPlaneMov : MonoBehaviour
 
             }
             else
-                canFly = true;
+            {
+                jump();
+            }
         }
         Debug.Log(rb.velocity.magnitude);
+        lastY = transform.position.y;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         canFly = false;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
+    public void jump()
+    {
+        rb.AddForce(1000 * Vector3.up);
+        jumping = true;
+    }
+
 
 }
