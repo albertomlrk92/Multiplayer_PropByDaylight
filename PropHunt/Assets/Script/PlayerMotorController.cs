@@ -9,10 +9,15 @@ public class PlayerMotorController : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 rotation = Vector3.zero;
-    private Vector3 cameraRotation = Vector3.zero;
+    private float cameraRotationX = 0f;
+    private float currentCameraRotationX = 0f;
+    private Vector3 jumpForce = Vector3.zero;
 
-
+    [SerializeField]
+    private float cameraRotationLimit = 85f;
     private Rigidbody rb;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +45,10 @@ public class PlayerMotorController : MonoBehaviour
         {
             rb.MovePosition(rb.position + velocity * Time.deltaTime);
         }
+        if (jumpForce != Vector3.zero)
+        {
+            rb.AddForce(jumpForce * Time.deltaTime, ForceMode.Acceleration);
+        }
     }
 
     public void Rotate(Vector3 _rotation)
@@ -53,12 +62,20 @@ public class PlayerMotorController : MonoBehaviour
 
         if(cam != null)
         {
-            cam.transform.Rotate(-cameraRotation);
+            currentCameraRotationX -= cameraRotationX;
+            currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
+
+            cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
         }
     }
 
-    public void RotateCamera(Vector3 _camera)
+    public void RotateCamera(float _cameraX)
     {
-        cameraRotation = _camera;
+        cameraRotationX = _cameraX;
+    }
+
+    public void ApplyJump(Vector3 jump)
+    {
+        jumpForce = jump;
     }
 }
