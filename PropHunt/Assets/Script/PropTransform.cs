@@ -11,7 +11,6 @@ public class PropTransform : MonoBehaviour
     public GameObject actualPrefab;
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -52,7 +51,12 @@ public class PropTransform : MonoBehaviour
             GameObject prefab = GetPrefab(_hit.transform.tag);
             if (prefab != null)
             {
-                RpcChangePrefab(prefab);
+                actualPrefab.SetActive(false);
+
+                actualPrefab = transform.Find(prefab.tag).gameObject;
+
+                actualPrefab.SetActive(true);
+                //RpcChangePrefab(prefab);
             }
 
         }
@@ -60,9 +64,10 @@ public class PropTransform : MonoBehaviour
     //[ClientRpc]
     private void RpcChangePrefab(GameObject _prefab)
     {
+        /*
         GameObject clone = (GameObject)Instantiate(_prefab, transform.position, transform.rotation);
         clone.transform.parent = transform;
         Destroy(actualPrefab);
-        actualPrefab = clone;
+        actualPrefab = clone;*/
     }
 }

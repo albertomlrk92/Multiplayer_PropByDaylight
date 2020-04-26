@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movment1 : MonoBehaviour
+public class PropMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     public float maxSpeed = 20.0f;
@@ -23,7 +23,7 @@ public class Movment1 : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class Movment1 : MonoBehaviour
         vel += velOffset;
         transform.position += vel * dt;
         totemConfig();
-        
+
     }
     private void totemConfig()
     {
@@ -50,11 +50,12 @@ public class Movment1 : MonoBehaviour
             myLoadingBar.activatingeTotem();
             myLoadingBar.currentTotem = currentTotem;
         }
-        else if(!canTotem)
+        else if (!canTotem)
         {
             myLoadingBar.desactivateLoading();
-            myLoadingBar.currentTotem=null;
+            myLoadingBar.currentTotem = null;
         }
     }
 
 }
+

@@ -26,8 +26,8 @@ public class Totem : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.GetComponent<Movment1>().canTotem = true;
-            other.GetComponent<Movment1>().currentTotem = this.gameObject;
+            other.GetComponent<PropMovement>().canTotem = true;
+            other.GetComponent<PropMovement>().currentTotem = this.gameObject;
         }
     }
 
@@ -35,8 +35,8 @@ public class Totem : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<Movment1>().canTotem = false;
-            other.GetComponent<Movment1>().currentTotem = null;
+            other.GetComponent<PropMovement>().canTotem = false;
+            other.GetComponent<PropMovement>().currentTotem = null;
         }
     }
 }
