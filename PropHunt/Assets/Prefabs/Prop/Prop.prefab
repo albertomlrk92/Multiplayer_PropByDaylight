@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1106811734332523208}
   - component: {fileID: 1106811734332523210}
   - component: {fileID: 1106811734332523209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1106811734571320741}
   - component: {fileID: 1106811734571320742}
   - component: {fileID: 1106811734571320743}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TextIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 1106811734671670752}
   - component: {fileID: 1106811734671670753}
   - component: {fileID: 1106811734671670754}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: loading bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 1106811734847530387}
   - component: {fileID: 1106811734847530389}
   - component: {fileID: 1106811734847530388}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TextLoading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 1106811734964804161}
   - component: {fileID: 1106811734964804160}
   - component: {fileID: 1106811734964804159}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 1106811735168690920}
   - component: {fileID: 1106811735168690919}
   - component: {fileID: 1106811735168690918}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fridge
   m_TagString: Fridge
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 1106811735199605963}
   - component: {fileID: 1106811735199605962}
   - component: {fileID: 1106811735199605961}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1106811735471934152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,10 +635,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1106811735538964739}
   - component: {fileID: 1106811735538964738}
+  - component: {fileID: -3954017515919062204}
   - component: {fileID: 1106811735538964737}
   - component: {fileID: 1106811735538964736}
   - component: {fileID: 1106811735538964735}
-  m_Layer: 0
+  - component: {fileID: -8320128163198091844}
+  - component: {fileID: -5184569661444746681}
+  - component: {fileID: 2131665755720035096}
+  m_Layer: 8
   m_Name: Prop
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -678,9 +682,23 @@ MonoBehaviour:
   distanceOfTransform: 5
   myCamera: {fileID: 1106811734332523210}
   prefabs:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1106811735168690916}
+  - {fileID: 1106811735733361137}
   actualPrefab: {fileID: 1106811735471934151}
+--- !u!114 &-3954017515919062204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106811735538964734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 393c2fe0ec3d866409669d01bbc271c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsToDisable: []
+  remoteLayerName: RemotePlayer
 --- !u!54 &1106811735538964737
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -729,6 +747,81 @@ MonoBehaviour:
   canTotem: 0
   currentTotem: {fileID: 0}
   myLoadingBar: {fileID: 1106811736044819841}
+--- !u!114 &-8320128163198091844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106811735538964734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &-5184569661444746681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106811735538964734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d6c522af31447398568cc65334232b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &2131665755720035096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106811735538964734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4fc1de7aae047a4bf138b9498c9b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 1106811735168690917}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!1 &1106811735707385112
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +833,7 @@ GameObject:
   - component: {fileID: 1106811735707385113}
   - component: {fileID: 1106811735707385115}
   - component: {fileID: 1106811735707385114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +917,7 @@ GameObject:
   - component: {fileID: 1106811735733361141}
   - component: {fileID: 1106811735733361140}
   - component: {fileID: 1106811735733361139}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PaperPlane
   m_TagString: PaperPlane
   m_Icon: {fileID: 0}
@@ -919,7 +1012,7 @@ GameObject:
   - component: {fileID: 1106811736044819844}
   - component: {fileID: 1106811736044819843}
   - component: {fileID: 1106811736044819841}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RadialProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1026,7 +1119,7 @@ GameObject:
   - component: {fileID: 1106811736407145565}
   - component: {fileID: 1106811736407145567}
   - component: {fileID: 1106811736407145566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
