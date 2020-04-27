@@ -7,6 +7,7 @@ public class PlayerSetupNet : NetworkBehaviour
 {
     [SerializeField]
     Behaviour[] componentsToDisable;
+
     [SerializeField]
     string remoteLayerName = "RemotePlayer";
 
@@ -21,6 +22,7 @@ public class PlayerSetupNet : NetworkBehaviour
         }
         else
         {
+            //We are the player here, disable scene camera;
             sceneCamera = Camera.main;
             if (sceneCamera != null)
             {
@@ -28,6 +30,8 @@ public class PlayerSetupNet : NetworkBehaviour
             }
 
         }
+
+        GetComponent<PlayerManager>().Setup();
     }
 
     public override void OnStartClient()
