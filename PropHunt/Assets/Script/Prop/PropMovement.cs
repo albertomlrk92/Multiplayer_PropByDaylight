@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PropMovement : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -39,7 +38,7 @@ public class PropMovement : MonoBehaviour
         float maxOffset = acceleration * dt;
         velOffset = Vector3.ClampMagnitude(velOffset, maxOffset);
         vel += velOffset;
-        transform.position += vel * dt;
+        transform.parent.position += vel * dt;
         totemConfig();
 
     }

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PropTransform : MonoBehaviour
+using UnityEngine.Networking;
+public class PropTransform : NetworkBehaviour
 {
     // Start is called before the first frame update
     public float distanceOfTransform;
@@ -16,11 +16,22 @@ public class PropTransform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-        RaycastHit hit = new RaycastHit();
+        if(!isLocalPlayer)
+        {
+            return;
+        }
+            
+
         if (Input.GetMouseButtonDown(0))
         {
-            CmdTransform(ray, hit);
+            if (isServer)
+            {
+                RpcSwapProp();
+            }
+            else
+            {
+                CmdSwapProp();
+            }
         }
     
     }
@@ -40,34 +51,37 @@ public class PropTransform : MonoBehaviour
         return null;
     }
 
-
-    //[Command]
-    private void CmdTransform(Ray _ray, RaycastHit _hit)
+    private void propTransform()
     {
-        Debug.DrawRay(_ray.origin, _ray.direction * distanceOfTransform, Color.red, 2.0f);
-        if (Physics.Raycast(_ray, out _hit, distanceOfTransform))
+        Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit = new RaycastHit();
+        Debug.DrawRay(ray.origin, ray.direction * distanceOfTransform, Color.red, 2.0f);
+        if (Physics.Raycast(ray, out hit, distanceOfTransform))
         {
-            Debug.Log("I'm looking at " + _hit.transform.name);
-            GameObject prefab = GetPrefab(_hit.transform.tag);
+            Debug.Log("I'm looking at " + hit.transform.name);
+            GameObject prefab = GetPrefab(hit.transform.tag);
             if (prefab != null)
             {
                 actualPrefab.SetActive(false);
 
-                actualPrefab = transform.Find(prefab.tag).gameObject;
+                actualPrefab = prefab;
 
                 actualPrefab.SetActive(true);
-                //RpcChangePrefab(prefab);
+
             }
 
         }
     }
-    //[ClientRpc]
-    private void RpcChangePrefab(GameObject _prefab)
+    [Command]
+    void CmdSwapProp()
     {
-        /*
-        GameObject clone = (GameObject)Instantiate(_prefab, transform.position, transform.rotation);
-        clone.transform.parent = transform;
-        Destroy(actualPrefab);
-        actualPrefab = clone;*/
+        //Apply it to all other clients
+        RpcSwapProp();
+    }
+
+    [ClientRpc]
+    void RpcSwapProp()
+    {
+        propTransform();
     }
 }
