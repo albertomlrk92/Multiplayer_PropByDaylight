@@ -765,10 +765,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1106811735538964734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1274e6add3ea9bd44a908a6c6af9640a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e103e50232dfc7429103aa9172568b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  disableOnDeath: []
+  maxHealth: 100
 --- !u!114 &1106811735538964738
 MonoBehaviour:
   m_ObjectHideFlags: 0
