@@ -8,9 +8,13 @@ public class PropTransform : NetworkBehaviour
     public float distanceOfTransform;
     public Camera myCamera;
     public GameObject[] prefabs;
+    public Behaviour[] propScripts;
     public GameObject actualPrefab;
-    void Start()
+    public Behaviour currentMov;
+
+    private void Start()
     {
+        currentMov.enabled = true;
     }
 
     // Update is called once per frame
@@ -66,9 +70,28 @@ public class PropTransform : NetworkBehaviour
 
                 actualPrefab = prefab;
 
-                actualPrefab.SetActive(true);
+                actualPrefab.SetActive(true);       
+                
+                changeMov();
 
             }
+
+        }
+    }
+    private void changeMov()
+    {
+        switch(actualPrefab.tag)
+        {
+            case "Ghost":
+                currentMov.enabled = false;
+                currentMov = propScripts[0];
+                currentMov.enabled = true;
+                break;
+            case "PaperPlane":
+                currentMov.enabled = false;
+                currentMov = propScripts[1];
+                currentMov.enabled = true;
+                break;
 
         }
     }

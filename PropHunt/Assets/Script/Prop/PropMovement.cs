@@ -38,7 +38,7 @@ public class PropMovement : MonoBehaviour
         float maxOffset = acceleration * dt;
         velOffset = Vector3.ClampMagnitude(velOffset, maxOffset);
         vel += velOffset;
-        transform.parent.position += vel * dt;
+        transform.position += vel * dt;
         totemConfig();
 
     }

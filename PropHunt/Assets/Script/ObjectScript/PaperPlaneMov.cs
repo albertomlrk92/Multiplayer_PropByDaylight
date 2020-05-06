@@ -26,6 +26,9 @@ public class PaperPlaneMov : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.mass = 1;
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         lastY = transform.position.y;
     }
 
@@ -87,7 +90,7 @@ public class PaperPlaneMov : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(!canFly)
+            if(!canFly && !jumping)
             {
                 jump();
             }
