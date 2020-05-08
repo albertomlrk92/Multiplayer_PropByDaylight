@@ -17,8 +17,6 @@ public class ControllerPlayerMovement : MonoBehaviour
 
     [Header("Spring Options")]
     [SerializeField]
-    private JointDriveMode jointMode = JointDriveMode.Position;
-    [SerializeField]
     private float jointSpring = 20f;
     [SerializeField]
     private float jointMaxForce = 40f;
@@ -40,14 +38,14 @@ public class ControllerPlayerMovement : MonoBehaviour
     void Update()
     {
 
-        float xMov = Input.GetAxisRaw("Horizontal");
-        float zMov = Input.GetAxisRaw("Vertical");
+        float xMov = Input.GetAxis("Horizontal");
+        float zMov = Input.GetAxis("Vertical");
 
         Vector3 movHorizontal = transform.right * xMov;
         Vector3 movVertical = transform.forward * zMov;
 
         //final movement vector
-        Vector3 velocity = (movHorizontal + movVertical).normalized * speedPlayer;
+        Vector3 velocity = (movHorizontal + movVertical) * speedPlayer;
 
         //apply movement
         motor.Move(velocity);
@@ -90,7 +88,6 @@ public class ControllerPlayerMovement : MonoBehaviour
     {
         joint.yDrive = new JointDrive
         {
-            mode = jointMode,
             positionSpring = jointSpring,
             maximumForce = jointMaxForce
         };
