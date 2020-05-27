@@ -80,7 +80,8 @@ public class PropTransform : NetworkBehaviour
     }
     private void changeMov()
     {
-        switch(actualPrefab.tag)
+        this.GetComponent<SphereCollider>().enabled = false;
+        switch (actualPrefab.tag)
         {
             case "Ghost":
                 currentMov.enabled = false;
@@ -91,6 +92,12 @@ public class PropTransform : NetworkBehaviour
                 currentMov.enabled = false;
                 currentMov = propScripts[1];
                 currentMov.enabled = true;
+                break;
+            case "Fridge":
+                currentMov.enabled = false;
+                currentMov = propScripts[2];
+                currentMov.enabled = true;
+                currentMov.GetComponent<SimpleMasMov>().changeRbattributes(actualPrefab.tag);
                 break;
 
         }
