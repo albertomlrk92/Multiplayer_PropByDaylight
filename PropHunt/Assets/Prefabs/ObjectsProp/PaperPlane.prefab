@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1636819183592898315}
-  - component: {fileID: 1636819183592898309}
   m_Layer: 0
   m_Name: PaperPlane
   m_TagString: PaperPlane
@@ -32,19 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1636819183592898309
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1636819183592898313}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1636819185188711271
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +114,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636819185188711271}
   m_Enabled: 1
+--- !u!64 &7865783487546771083
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320261953407985976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1226817584057097758, guid: c670af5512711d24ca822328807cb34e, type: 3}
 --- !u!1001 &1636819184367169585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217,6 +217,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c670af5512711d24ca822328807cb34e, type: 3}
+--- !u!1 &7320261953407985976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: c670af5512711d24ca822328807cb34e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1636819184367169585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6038643954552298283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: c670af5512711d24ca822328807cb34e,

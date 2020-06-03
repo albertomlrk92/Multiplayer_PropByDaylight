@@ -100,9 +100,12 @@ public class PaperPlaneMov : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        canFly = false;
-        //free constraints for let the plane falls by natural gravity
-        rb.constraints = RigidbodyConstraints.None;
+        if (this.enabled)
+        {
+            canFly = false;
+            //free constraints for let the plane falls by natural gravity
+            rb.constraints = RigidbodyConstraints.None;
+        }
     }
     public void jump()
     {
