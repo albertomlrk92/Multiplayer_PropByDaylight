@@ -839,6 +839,7 @@ MonoBehaviour:
   acceleration: 20
   speed: 20
   jumpSpeed: 8
+  fridgeMass: 5
   canTotem: 0
   currentTotem: {fileID: 0}
   myLoadingBar: {fileID: 0}
@@ -1116,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 748567042505637287, guid: cba1aa1b67cb71b428a5a7a348e2dc16,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 748567042505637287, guid: cba1aa1b67cb71b428a5a7a348e2dc16,
         type: 3}

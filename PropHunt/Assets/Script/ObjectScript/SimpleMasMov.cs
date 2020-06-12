@@ -9,7 +9,7 @@ public class SimpleMasMov : MonoBehaviour
     public float acceleration = 20.0f;
     public float speed = 20.0f;
     public float jumpSpeed = 8.0f;
-
+    public float fridgeMass;
 
     private float inputX;
     private float inputZ;
@@ -23,6 +23,7 @@ public class SimpleMasMov : MonoBehaviour
     private Rigidbody rb;
     private float mass;
     private PlayerMotorController motor;
+    private float lookSensivility = 3f;
     void Start()
     {
         motor = GetComponent<PlayerMotorController>();
@@ -31,16 +32,29 @@ public class SimpleMasMov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float dt = Time.deltaTime;
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputZ = Input.GetAxisRaw("Vertical");
-        //Movement with acceleration  
-        Vector3 targetSpeed = new Vector3(speed * inputX, 0, speed * inputZ);   //speed * inputs.y
-        Vector3 velOffset = targetSpeed - vel;
-        float maxOffset = acceleration * dt;
-        velOffset = Vector3.ClampMagnitude(velOffset, maxOffset);
-        vel += velOffset;
-        transform.position += vel * dt;
+        float xMov = Input.GetAxis("Horizontal");
+        float zMov = Input.GetAxis("Vertical");
+
+        Vector3 movHorizontal = transform.right * xMov;
+        Vector3 movVertical = transform.forward * zMov;
+
+        //final movement vector
+        Vector3 velocity = (movHorizontal + movVertical) * speed/rb.mass;
+
+        //apply movement
+        motor.Move(velocity);
+        float yRot = Input.GetAxisRaw("Mouse X");
+        Vector3 rotationPlayer = new Vector3(0f, yRot, 0f) * lookSensivility;
+
+        //Apply
+        motor.Rotate(rotationPlayer);
+
+        //Rotation VERTICAL, we will turn the camera in a vertical axis, why? We dont wanna turn the player vertically only camera.
+        float xRot = Input.GetAxisRaw("Mouse Y");
+        float cameraRotation = xRot * lookSensivility;
+
+        //Apply 
+        motor.RotateCamera(cameraRotation);
 
     }
     public void changeRbattributes(string prefab)
@@ -48,7 +62,7 @@ public class SimpleMasMov : MonoBehaviour
         switch (prefab)
         {
             case "Fridge":
-                mass = 150;
+                mass = fridgeMass;
                 break;
             case "Botella":
                 break;
@@ -75,8 +89,13 @@ public class SimpleMasMov : MonoBehaviour
     }
     private void rbApplication()
     {
-        rb = GetComponent<Rigidbody>();
         rb.mass = mass;
+        Debug.Log(rb.mass);
         rb.useGravity = true;
+    }
+    private void OnEnable()
+    {
+        rb = this.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 }
