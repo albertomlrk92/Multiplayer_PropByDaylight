@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class PaperPlaneMov : MonoBehaviour
@@ -23,13 +24,16 @@ public class PaperPlaneMov : MonoBehaviour
     private Rigidbody rb;
     private bool jumping = false;
     private float lastY;
+    private float lookSensivility = 3f;
+    private PlayerMotorController motor;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.mass = 1;
+        rb.mass = 1f;
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         lastY = transform.position.y;
+        motor = GetComponent<PlayerMotorController>();
     }
 
     // Update is called once per frame
@@ -37,18 +41,36 @@ public class PaperPlaneMov : MonoBehaviour
     {
         float dt = Time.deltaTime;
         //Get axis
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputY = Input.GetAxisRaw("Vertical");
 
         if (canFly)
         {
+            /*inputX = Input.GetAxisRaw("Horizontal");
+            Vector3 movFrontal = transform.forward * speed;
 
+            //final movement vector
+            Vector3 velocity = (movFrontal) * speed;
+            //velocity -= 1f * Vector3.up;
+            //apply movement
+            motor.Move(velocity);*/
+            float yRot = Input.GetAxisRaw("Mouse X");
+            float xRot = Input.GetAxisRaw("Mouse Y");
+            float cameraRotation = xRot * lookSensivility;
+            Vector3 rotationPlayer = new Vector3(-xRot, yRot, 0f) * lookSensivility;
+
+            //Apply
+            motor.Rotate(rotationPlayer);
+
+            //Rotation VERTICAL, we will turn the camera in a vertical axis, why? We dont wanna turn the player vertically only camera.
+
+
+            //Apply 
+            motor.RotateCamera(cameraRotation);
             //Rotation with acceleration
-            Vector3 targetRotationSpeed = new Vector3(angularSpeed * inputY, angularSpeed * inputX, 0f);
+            /*Vector3 targetRotationSpeed = new Vector3(angularSpeed * inputY, angularSpeed * inputX, 0f);
             Vector3 angularVelOffset = targetRotationSpeed - angularVel;
             angularVelOffset = Vector3.ClampMagnitude(angularVelOffset, angularAcceleration * dt);
             angularVel += angularVelOffset;
-            transform.eulerAngles += angularVel;
+            transform.eulerAngles += angularVel;*/
 
 
             //Movement with acceleration  
@@ -61,7 +83,8 @@ public class PaperPlaneMov : MonoBehaviour
         }
         else
         {
-            //Jumping state
+            //motor.Move(Vector3.zero);
+            motor.Rotate(Vector3.zero);
             if (jumping)
             {
                 //if the gameObject stoped to jump and start to fall, then start to move again
@@ -109,7 +132,7 @@ public class PaperPlaneMov : MonoBehaviour
     }
     public void jump()
     {
-        rb.AddForce(1000 * Vector3.up);
+        rb.AddForce(10 * Vector3.up);
         jumping = true;
     }
 

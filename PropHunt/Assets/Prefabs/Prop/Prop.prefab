@@ -514,6 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1106811735471934152}
   - component: {fileID: 3972932137288928733}
+  - component: {fileID: 6934464667692712153}
   m_Layer: 8
   m_Name: ghost
   m_TagString: Untagged
@@ -570,6 +571,19 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!135 &6934464667692712153
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106811735471934151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1106811735538964734
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +603,7 @@ GameObject:
   - component: {fileID: 796850130293370841}
   - component: {fileID: 2954392014701664094}
   - component: {fileID: 791625420798424401}
+  - component: {fileID: 519652055681248385}
   m_Layer: 8
   m_Name: Prop
   m_TagString: Player
@@ -784,9 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2286bd201a5ff5448b4f7ec7dbbb9203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 20
-  acceleration: 20
-  speed: 20
+  speed: 5
   jumpSpeed: 8
   canTotem: 0
   currentTotem: {fileID: 0}
@@ -803,10 +816,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47576d8311b72fa4abcfdb85240c457d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  acceleration: 10
+  maxSpeed: 7
+  acceleration: 5
   deceleration: 0.5
-  speed: 10
+  speed: 5
   angularSpeed: 2
   angularAcceleration: 2
   canFly: 1
@@ -829,6 +842,20 @@ MonoBehaviour:
   canTotem: 0
   currentTotem: {fileID: 0}
   myLoadingBar: {fileID: 0}
+--- !u!114 &519652055681248385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106811735538964734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816fed358f26a9044a80bf768d891618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  cameraRotationLimit: 85
 --- !u!1 &1106811736044819840
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,6 +966,19 @@ MonoBehaviour:
   textLoading: {fileID: 1106811734847530387}
   speed: 30
   currentTotem: {fileID: 0}
+--- !u!65 &3126881984444230387
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304721802661313452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06722534, y: 0.0091018, z: 0.05544428}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2317968182049791464
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +990,6 @@ GameObject:
   - component: {fileID: 4273309731695214583}
   - component: {fileID: 2604253239765262583}
   - component: {fileID: 6341710887422083715}
-  - component: {fileID: 5507956491779811742}
   m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
@@ -1019,19 +1058,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5507956491779811742
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2317968182049791464}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7161104419940641027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,6 +1361,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1636819183592898314, guid: e25cf32510759e34c9fd60f2fe2b33da, type: 3}
     - {fileID: 1636819183592898308, guid: e25cf32510759e34c9fd60f2fe2b33da, type: 3}
+    - {fileID: 7865783487546771083, guid: e25cf32510759e34c9fd60f2fe2b33da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e25cf32510759e34c9fd60f2fe2b33da, type: 3}
 --- !u!1 &7006088673191816605 stripped
 GameObject:
@@ -1345,6 +1372,12 @@ GameObject:
 --- !u!4 &7006088673191816607 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1636819183592898315, guid: e25cf32510759e34c9fd60f2fe2b33da,
+    type: 3}
+  m_PrefabInstance: {fileID: 8614689990164943508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1304721802661313452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7320261953407985976, guid: e25cf32510759e34c9fd60f2fe2b33da,
     type: 3}
   m_PrefabInstance: {fileID: 8614689990164943508}
   m_PrefabAsset: {fileID: 0}

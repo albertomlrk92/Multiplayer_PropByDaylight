@@ -80,7 +80,7 @@ public class PropTransform : NetworkBehaviour
     }
     private void changeMov()
     {
-        this.GetComponent<SphereCollider>().enabled = false;
+       // actualPrefab.GetComponent<SphereCollider>().enabled = false;
         switch (actualPrefab.tag)
         {
             case "Ghost":

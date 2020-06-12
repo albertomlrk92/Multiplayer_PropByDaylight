@@ -22,9 +22,10 @@ public class SimpleMasMov : MonoBehaviour
 
     private Rigidbody rb;
     private float mass;
+    private PlayerMotorController motor;
     void Start()
     {
-
+        motor = GetComponent<PlayerMotorController>();
     }
 
     // Update is called once per frame
