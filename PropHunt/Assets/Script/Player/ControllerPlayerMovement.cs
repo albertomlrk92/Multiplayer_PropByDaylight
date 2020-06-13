@@ -37,6 +37,7 @@ public class ControllerPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PauseMenu.IsOn) return;
 
         float xMov = Input.GetAxis("Horizontal");
         float zMov = Input.GetAxis("Vertical");

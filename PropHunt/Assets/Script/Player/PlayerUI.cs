@@ -11,11 +11,18 @@ public class PlayerUI : MonoBehaviour
     private PlayerManager player;
     private ControllerPlayerMovement controller;
 
+    [SerializeField]
+    private GameObject pauseMenu;
 
+    private void Start()
+    {
+        PauseMenu.IsOn = false;
+    }
     public void SetPlayer(PlayerManager _player)
     {
         player = _player;
         controller = player.GetComponent<ControllerPlayerMovement>();
+        
         
     }
 
@@ -23,6 +30,16 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         SetHealthAmount(player.GetHealthPct());
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseMenu();
+        }
+    }
+    void TogglePauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        PauseMenu.IsOn = pauseMenu.activeSelf;
     }
 
     void SetHealthAmount(float _amount)

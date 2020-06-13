@@ -33,6 +33,7 @@ public class PlayerShoot : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PauseMenu.IsOn) return;
         if(weapon.fireRate <= 0f)
         {
             if(Input.GetButtonDown("Fire1"))

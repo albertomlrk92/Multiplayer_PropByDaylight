@@ -667,10 +667,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: dd6bb2d4-6287-420f-85b0-54f8d29b04b3
+  cloudProjectId: b38d14ed-4121-46e9-9342-d81a5be753c9
   framebufferDepthMemorylessMode: 0
   projectName: ExplosionTest
-  organizationId: kendo-1998
+  organizationId: edusabix
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
