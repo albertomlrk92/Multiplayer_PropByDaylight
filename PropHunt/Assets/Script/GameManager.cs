@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     public MatchSettings matchSettings;
 
+    [SerializeField]
+    private GameObject sceneCamera;
+
     private void Awake()
     {
 
@@ -21,6 +24,17 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
+
+    public void setSceneCameraActive(bool isActive)
+    {
+        if(sceneCamera==null)
+        {
+            return;
+        }
+
+        sceneCamera.SetActive(isActive);
+    }
+
     #region Player Tracking
     private const string PLAYER_ID_PREFIX = "Player ";
     private static Dictionary<string, PlayerManager> players = new Dictionary<string, PlayerManager>();

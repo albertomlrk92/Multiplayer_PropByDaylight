@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+
 [RequireComponent(typeof(PlayerManager))]
+[RequireComponent(typeof(ControllerPlayerMovement))]
+
 public class PlayerSetupNet : NetworkBehaviour
 {
     [SerializeField]
@@ -13,13 +16,14 @@ public class PlayerSetupNet : NetworkBehaviour
 
     [SerializeField]
     string dontDrawLayerName = "DontDraw";
+
     [SerializeField]
     GameObject playerGraphics;
     [SerializeField]
     GameObject playerUIprefab;
-    private GameObject playerUIInstance;
 
-    Camera sceneCamera;
+    [HideInInspector]
+    public GameObject playerUIInstance;
 
     void Start()
     {
@@ -30,21 +34,26 @@ public class PlayerSetupNet : NetworkBehaviour
         }
         else
         {
-            //We are the player here, disable scene camera;
-            sceneCamera = Camera.main;
-            if (sceneCamera != null)
-            {
-                sceneCamera.gameObject.SetActive(false);
-            }
+
             //Disable player graphics for local player
             SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
 
             //Create PlayerUI
             playerUIInstance = Instantiate(playerUIprefab);
             playerUIInstance.name = playerUIprefab.name;
+
+            //Config PlayerUI
+            PlayerUI ui = playerUIInstance.GetComponent<PlayerUI>();
+
+            if (ui == null)
+                Debug.Log("No playerUI component");
+
+            ui.SetPlayer(GetComponent<PlayerManager>());
+
+            GetComponent<PlayerManager>().SetupPlayer();
         }
 
-        GetComponent<PlayerManager>().Setup();
+        
     }
 
     void SetLayerRecursively(GameObject obj, int newLayer)
@@ -63,6 +72,7 @@ public class PlayerSetupNet : NetworkBehaviour
 
         string netID = GetComponent<NetworkIdentity>().netId.ToString();
         PlayerManager player = GetComponent<PlayerManager>();
+
         GameManager.RegisterPlayer(netID, player);
     }
 
@@ -81,10 +91,8 @@ public class PlayerSetupNet : NetworkBehaviour
     {
 
         Destroy(playerUIInstance);
-        if (sceneCamera != null)
-        {
-            sceneCamera.gameObject.SetActive(true);
-        }
+        if(isLocalPlayer)
+            GameManager.instance.setSceneCameraActive(true);
 
         GameManager.UnregisterPlayer(transform.name);
     }

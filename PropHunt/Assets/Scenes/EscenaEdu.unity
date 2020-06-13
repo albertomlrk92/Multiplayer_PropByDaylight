@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matchSettings:
     respawnTime: 3
+  sceneCamera: {fileID: 636504926}
 --- !u!4 &251675077
 Transform:
   m_ObjectHideFlags: 0
@@ -717,7 +718,6 @@ GameObject:
   m_Component:
   - component: {fileID: 636504929}
   - component: {fileID: 636504928}
-  - component: {fileID: 636504927}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -725,14 +725,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &636504927
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636504926}
-  m_Enabled: 1
 --- !u!20 &636504928
 Camera:
   m_ObjectHideFlags: 0

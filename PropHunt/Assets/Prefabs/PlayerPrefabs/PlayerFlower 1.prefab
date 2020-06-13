@@ -353,6 +353,7 @@ MonoBehaviour:
   playerGraphics: {fileID: 6899596836642954538}
   playerUIprefab: {fileID: 7088095107813439910, guid: b7deecf82fa191b4397dccb25667192a,
     type: 3}
+  playerUIInstance: {fileID: 0}
 --- !u!114 &8928838667591714461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,8 +377,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 567
   muzzle: {fileID: 7364760602171255341}
-  shootEffect: {fileID: 0}
-  pewpew: {fileID: 8300000, guid: fe980663d8e07af4da81f34d8af992bd, type: 3}
 --- !u!114 &3520940666422602573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +392,9 @@ MonoBehaviour:
   disableOnDeath:
   - {fileID: 6899596836907569002}
   - {fileID: 8928838667591714461}
+  disableGameObjectsOnDeath:
+  - {fileID: 6899596836642954538}
+  - {fileID: 6899596836647737474}
   maxHealth: 100
 --- !u!114 &7885741025974272526
 MonoBehaviour:
@@ -571,7 +573,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6899596836907569003}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}

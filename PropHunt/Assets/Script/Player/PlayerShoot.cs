@@ -16,8 +16,8 @@ public class PlayerShoot : NetworkBehaviour
     public LayerMask mask;
 
     public GameObject muzzle;
-    public AudioSource shootEffect;
-    public AudioClip pewpew;
+    //public AudioSource shootEffect;
+    //public AudioClip pewpew;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class PlayerShoot : NetworkBehaviour
             Debug.Log("No camera reference");
             this.enabled = false;
         }
-        shootEffect = GetComponent<AudioSource>();
+        //shootEffect = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -68,7 +68,7 @@ public class PlayerShoot : NetworkBehaviour
     void RpcDoShootEffect()
     {
         muzzle.GetComponent<ParticleSystem>().Play();
-        shootEffect.PlayOneShot(pewpew, 0.5f);
+        //shootEffect.PlayOneShot(pewpew, 0.5f);
         
 
     }
