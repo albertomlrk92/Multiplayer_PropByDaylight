@@ -12,9 +12,9 @@ public class RoundSystem : NetworkBehaviour
 
     private GameObject[] totemsInScene;
     private int totemsToWin = 3;
+    private int numberOfTotemsActive = 0;
 
     private NetworkManager networkManager;
-
 
     private bool victoryHunter = false;
     private bool victoryProps = false;
@@ -69,20 +69,35 @@ public class RoundSystem : NetworkBehaviour
 
         CheckTotemsActive();
         CheckIfAllDead();
+
+        if(numberOfTotemsActive >=totemsToWin)
+        {
+            Debug.Log("Doors Open!");
+        }
+        else
+        {
+            Debug.Log("Doors Closed!");
+        }
         
     }
     public void CheckTotemsActive()
     {
-        foreach (GameObject go in totemsInScene)
+        //foreach (GameObject go in totemsInScene)
+        //{
+        //    if (go.GetComponent<Totem>().active != true)
+        //    {
+        //        doorsOpen = true;
+        //        Debug.Log("DOORS OPEN!");
+        //    }
+        //}
+
+        for(int i= 0; i<totemsInScene.Length;i++)
         {
-            if (go.GetComponent<Totem>().active != true)
+            if(totemsInScene[i].GetComponent<Totem>().active)
             {
-                doorsOpen = true;
-                Debug.Log("DOORS OPEN!");
+                numberOfTotemsActive++;
             }
         }
-
-
     }
     public void CheckIfAllDead()
     {
@@ -105,10 +120,10 @@ public class RoundSystem : NetworkBehaviour
         {
             victoryHunter = true;
         }
-        if (victoryHunter == true) // if it's still true, everything's a green light
+        if (victoryHunter == true) 
             Debug.Log("HUNTER WON!");
 
-        if (victoryProps == true) // if it's still true
+        if (victoryProps == true) 
             Debug.Log("PROPS WON!");
     }
 
