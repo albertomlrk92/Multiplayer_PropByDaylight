@@ -5,9 +5,38 @@ TagManager:
   serializedVersion: 2
   tags:
   - Prop
-  - Prop2
   - Fridge
   - PaperPlane
+  - Totem
+  - Armario
+  - Barril1
+  - Barril2
+  - Caja
+  - Cama
+  - Colchon
+  - Cono
+  - Estanteria
+  - Jarra
+  - Ladrillo
+  - LataArrugada
+  - LataEntera
+  - Libro
+  - Lampara
+  - Maceta
+  - Mesa
+  - Mesilla
+  - MiniArmario
+  - Noodles
+  - Pale
+  - Silla
+  - Sillon
+  - Sofa
+  - Taburete
+  - Taquilla
+  - Basura
+  - Bombona
+  - Botella1
+  - Botella2
   layers:
   - Default
   - TransparentFX
