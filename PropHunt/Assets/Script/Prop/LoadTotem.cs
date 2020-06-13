@@ -23,7 +23,6 @@ public class LoadTotem : MonoBehaviour
     {
         if (this.gameObject.activeSelf)
         {
-            Debug.Log(currentTotem.GetComponent<Totem>().actualcharge);
             currentAmount = currentTotem.GetComponent<Totem>().actualcharge;
             if (currentAmount < 100)
             {
