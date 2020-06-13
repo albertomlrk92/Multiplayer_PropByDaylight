@@ -70,7 +70,7 @@ public class RoundSystem : NetworkBehaviour
         CheckTotemsActive();
         CheckIfAllDead();
 
-        if(numberOfTotemsActive >=totemsToWin)
+        if(numberOfTotemsActive >= totemsToWin)
         {
             Debug.Log("Doors Open!");
         }
