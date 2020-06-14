@@ -15,6 +15,7 @@ public class PropTransform : NetworkBehaviour
     private void Start()
     {
         currentMov.enabled = true;
+        GetComponent<PlayerMotorController>().cam = actualPrefab.GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame
@@ -57,7 +58,7 @@ public class PropTransform : NetworkBehaviour
 
     private void propTransform()
     {
-        Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        Ray ray = new Ray(myCamera.transform.position,myCamera.transform.forward);
         RaycastHit hit = new RaycastHit();
         Debug.DrawRay(ray.origin, ray.direction * distanceOfTransform, Color.red, 2.0f);
         if (Physics.Raycast(ray, out hit, distanceOfTransform))
@@ -70,7 +71,9 @@ public class PropTransform : NetworkBehaviour
 
                 actualPrefab = prefab;
 
-                actualPrefab.SetActive(true);       
+                actualPrefab.SetActive(true);
+                myCamera = actualPrefab.GetComponentInChildren<Camera>();
+                GetComponent<PlayerMotorController>().cam = myCamera;
                 
                 changeMov();
 
