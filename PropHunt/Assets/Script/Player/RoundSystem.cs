@@ -78,12 +78,24 @@ public class RoundSystem : NetworkBehaviour
             networkManager.playerPrefab = propPrefab;
             Debug.Log("Aqui el last player seria PROP");
         }
+        else
+        {
+            networkManager.playerPrefab = hunterPrefab;
+        }
         //disable prop components and enable hunter ones?
     }
 
     
     private void Update()
     {
+        //if (networkManager.numPlayers <= 1)
+        //{
+        //    networkManager.playerPrefab = hunterPrefab;
+        //}
+        //else
+        //{
+        //    networkManager.playerPrefab = propPrefab;
+        //}
         //When the first player enters, he will be Hunter,then, the next ones will be props
         SelectHunter();
 

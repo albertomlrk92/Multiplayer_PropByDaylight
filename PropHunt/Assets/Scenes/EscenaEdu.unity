@@ -394,7 +394,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dc10a8b36e2ae4cb52867b696edb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hunterPrefab: {fileID: 1106811735538964734, guid: bcbbfaed43aa21b46909afef14509c91,
+  hunterPrefab: {fileID: 6899596836907569003, guid: 2c2a332d60f36a4468d7c060283c4211,
+    type: 3}
+  propPrefab: {fileID: 1106811735538964734, guid: bcbbfaed43aa21b46909afef14509c91,
     type: 3}
   playerUI: {fileID: 7088095107813439910, guid: b7deecf82fa191b4397dccb25667192a,
     type: 3}
