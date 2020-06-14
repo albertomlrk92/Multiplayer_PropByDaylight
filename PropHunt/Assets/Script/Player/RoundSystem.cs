@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RoundSystem : NetworkBehaviour
 {
@@ -20,11 +22,19 @@ public class RoundSystem : NetworkBehaviour
     private bool victoryProps = false;
     private bool doorsOpen = false;
     private int randomHunter;
+
     [SerializeField]
     private GameObject hunterPrefab;
+    [SerializeField]
+    private GameObject propPrefab;
+
+    public GameObject playerUI;
+    public Text victoryTextUI;
 
     bool preround = true;
+    bool inPreparationTime = true;
     private float roundTime = 15f;
+
 
     private void Awake()
     {
@@ -39,13 +49,18 @@ public class RoundSystem : NetworkBehaviour
         }
 
         totemsInScene = GameObject.FindGameObjectsWithTag("Totem");
-
+        
     }
 
     private void Start()
     {
         networkManager = NetworkManager.singleton;
         randomHunter = Random.Range(1, networkManager.numPlayers);
+
+        if (networkManager.numPlayers <= 1)
+        {
+            networkManager.playerPrefab = hunterPrefab;
+        }
         StartCoroutine(RoundTimer());
 
         //networkManager.playerPrefab.
@@ -58,29 +73,37 @@ public class RoundSystem : NetworkBehaviour
 
     private void SelectHunter()
     {
-        if(networkManager.numPlayers >= 1)
+        if(networkManager.numPlayers > 1)
         {
-            networkManager.playerPrefab = hunterPrefab;
+            networkManager.playerPrefab = propPrefab;
             Debug.Log("Aqui el last player seria PROP");
         }
-        //turn it in hunter
-        //currentPlayers[randomHunter-1].SetActive(false); //funciona
-        
         //disable prop components and enable hunter ones?
     }
 
     
     private void Update()
     {
+        //When the first player enters, he will be Hunter,then, the next ones will be props
         SelectHunter();
+
+        
+
         currentPlayers = GameObject.FindGameObjectsWithTag("Player");
         //CURRENT AMOUNT OF PLAYERS
-        Debug.Log(" Numero de players a int  " + networkManager.numPlayers +
-                    "numero de tags con player: " + currentPlayers.Length);
+        //Debug.Log(" Numero de players a int  " + networkManager.numPlayers +"numero de tags con player: " + currentPlayers.Length);
 
+        //Pre-Round
         if(preround ==false)
         {
-            roundTime -= Time.deltaTime;
+            Debug.Log("Pre-Round End");
+
+            if(inPreparationTime==false)
+            {
+                Debug.Log("RoundTimeCounting");
+                roundTime -= Time.deltaTime;
+            }
+           
             //Debug.Log(roundTime);
         }
         else
@@ -97,6 +120,8 @@ public class RoundSystem : NetworkBehaviour
         }
         
     }
+
+
     public void CheckTotemsActive()
     {
         foreach (GameObject go in totemsInScene) //this only works if all totems are active, so the doors will open then.
@@ -133,27 +158,63 @@ public class RoundSystem : NetworkBehaviour
             }
 
         }
+        //Text victoryTextUI = playerUI.GetComponent<Text>();
+
+        if(!victoryHunter && !victoryProps)
+        {
+           victoryTextUI.text = "";
+        }
+            
+
 
         //Check if round timer hits 0
-        if(roundTime <= 0f && !victoryProps)
+        if (roundTime <= 0f && !victoryProps)
         {
             victoryHunter = true;
         }
-        //victory, then reload scene and start new round
-        if (victoryHunter == true) 
-            Debug.Log("HUNTER WON!");
 
-        if (victoryProps == true) 
+
+        //victory, then reload scene and start new round
+        if (victoryHunter == true)
+        {
+
+            Debug.Log("HUNTER WON!");
+            //victoryText.
+            victoryTextUI.text = "Hunter Won!";
+            networkManager.ServerChangeScene("EscenaEdu");
+        }
+        if (victoryProps == true)
+        {
             Debug.Log("PROPS WON!");
+            victoryTextUI.text = "Props Won!";
+        }
+            
     }
 
     IEnumerator RoundTimer()
     {
-        
-        yield return new WaitForSeconds(5.0f);
+        Debug.Log("Pre-Round start");
+        yield return new WaitForSeconds(10.0f);
         preround = false;
+        StartCoroutine(Wait10Seconds());
         
     }
 
+    IEnumerator Wait10Seconds()
+    {
+        Debug.Log("10 Seconds for hiding");
+        yield return new WaitForSeconds(10.0f);
+        inPreparationTime = false;
+
+    }
+
+    IEnumerator RestartRound()
+    {
+        yield return new WaitForSeconds(10.0f);
+        //networkManager.ServerChangeScene("EscenaEdu");
+        //networkManager.StopServer();
+    }
+
+    
 
 }
