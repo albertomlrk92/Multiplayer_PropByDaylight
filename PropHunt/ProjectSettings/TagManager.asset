@@ -8,6 +8,7 @@ TagManager:
   - Prop2
   - Fridge
   - PaperPlane
+  - Totem
   layers:
   - Default
   - TransparentFX
