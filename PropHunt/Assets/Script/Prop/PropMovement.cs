@@ -7,6 +7,9 @@ public class PropMovement : MonoBehaviour
     public float speed = 20.0f;
     public float jumpSpeed = 8.0f;
 
+    public bool canTotem = false;
+    public GameObject currentTotem;
+    public LoadTotem myLoadingBar;
 
     private Vector3 vel = new Vector3(0.0f, 0.0f, 0.0f);
     private float lookSensivility = 3f;
@@ -42,9 +45,22 @@ public class PropMovement : MonoBehaviour
 
         //Apply 
         motor.RotateCamera(cameraRotation);
+        totemConfig();
 
     }
-
+    private void totemConfig()
+    {
+        if (canTotem && Input.GetKeyDown(KeyCode.E))
+        {
+            myLoadingBar.activatingeTotem();
+            myLoadingBar.currentTotem = currentTotem;
+        }
+        else if (!canTotem)
+        {
+            myLoadingBar.desactivateLoading();
+            myLoadingBar.currentTotem = null;
+        }
+    }
 
 }
 

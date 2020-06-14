@@ -16,23 +16,27 @@ public class Totem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(active)
+        {
+            Debug.Log("Totem active");
+        }
         
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Prop")
+        if(other.tag == "Player")
         {
-            other.GetComponent<TotemInteract>().canTotem = true;
-            other.GetComponent<TotemInteract>().currentTotem = this.gameObject;
+            other.GetComponent<PropMovement>().canTotem = true;
+            other.GetComponent<PropMovement>().currentTotem = this.gameObject;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Prop")
+        if (other.tag == "Player")
         {
-            other.GetComponent<TotemInteract>().canTotem = false;
-            other.GetComponent<TotemInteract>().currentTotem = null;
+            other.GetComponent<PropMovement>().canTotem = false;
+            other.GetComponent<PropMovement>().currentTotem = null;
         }
     }
 }

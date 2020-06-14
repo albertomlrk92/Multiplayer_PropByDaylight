@@ -93,7 +93,7 @@ public class PropTransform : NetworkBehaviour
                 currentMov = propScripts[1];
                 currentMov.enabled = true;
                 break;
-            default:
+            case "Fridge":
                 currentMov.enabled = false;
                 currentMov = propScripts[2];
                 currentMov.enabled = true;

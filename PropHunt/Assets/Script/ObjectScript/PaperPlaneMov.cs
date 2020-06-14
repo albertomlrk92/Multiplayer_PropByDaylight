@@ -27,7 +27,12 @@ public class PaperPlaneMov : MonoBehaviour
     private PlayerMotorController motor;
     void Start()
     {
-       
+        rb = GetComponent<Rigidbody>();
+        rb.mass = 1f;
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        lastY = transform.position.y;
+        motor = GetComponent<PlayerMotorController>();
     }
 
     // Update is called once per frame
@@ -128,15 +133,6 @@ public class PaperPlaneMov : MonoBehaviour
     {
         rb.AddForce(10 * Vector3.up);
         jumping = true;
-    }
-    private void OnEnable()
-    {
-        rb = GetComponent<Rigidbody>();
-        rb.mass = 1f;
-        rb.useGravity = true;
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        lastY = transform.position.y;
-        motor = GetComponent<PlayerMotorController>();
     }
 
 
