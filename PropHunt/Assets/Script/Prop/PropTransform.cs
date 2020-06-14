@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Boo.Lang.Environments;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -72,7 +73,7 @@ public class PropTransform : NetworkBehaviour
                 actualPrefab = prefab;
 
                 actualPrefab.SetActive(true);
-                myCamera = actualPrefab.GetComponentInChildren<Camera>();
+                myCamera = Camera.main;
                 GetComponent<PlayerMotorController>().cam = myCamera;
                 
                 changeMov();
