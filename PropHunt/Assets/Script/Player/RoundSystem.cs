@@ -30,6 +30,7 @@ public class RoundSystem : NetworkBehaviour
 
     public GameObject playerUI;
     public Text victoryTextUI;
+    public Text timeText;
 
     bool preround = true;
     bool inPreparationTime = true;
@@ -57,13 +58,9 @@ public class RoundSystem : NetworkBehaviour
         networkManager = NetworkManager.singleton;
         randomHunter = Random.Range(1, networkManager.numPlayers);
 
-        if (networkManager.numPlayers <= 1)
-        {
-            networkManager.playerPrefab = hunterPrefab;
-        }
         StartCoroutine(RoundTimer());
 
-        //networkManager.playerPrefab.
+        networkManager.playerPrefab = hunterPrefab;
 
         //scheme: wait time --> pre round --> round--> finish round-->Restart
         
@@ -73,17 +70,14 @@ public class RoundSystem : NetworkBehaviour
 
     private void SelectHunter()
     {
-        
 
-        if(networkManager.numPlayers > 1)
+        if (networkManager.numPlayers > 1)
         {
             networkManager.playerPrefab = propPrefab;
             Debug.Log("Aqui el last player seria PROP");
         }
-        else
-        {
-            networkManager.playerPrefab = hunterPrefab;
-        }
+
+
         //disable prop components and enable hunter ones?
     }
 
@@ -98,10 +92,11 @@ public class RoundSystem : NetworkBehaviour
         //{
         //    networkManager.playerPrefab = propPrefab;
         //}
+        //Debug.Log(currentPlayers.Length);
         //When the first player enters, he will be Hunter,then, the next ones will be props
-        SelectHunter();
+        //SelectHunter();
 
-        
+
 
         currentPlayers = GameObject.FindGameObjectsWithTag("Player");
         //CURRENT AMOUNT OF PLAYERS
@@ -202,7 +197,9 @@ public class RoundSystem : NetworkBehaviour
             Debug.Log("PROPS WON!");
             victoryTextUI.text = "Props Won!";
         }
-            
+
+        
+        timeText.text = roundTime.ToString();
     }
 
     IEnumerator RoundTimer()
