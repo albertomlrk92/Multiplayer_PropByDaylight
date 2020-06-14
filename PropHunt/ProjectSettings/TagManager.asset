@@ -9,6 +9,33 @@ TagManager:
   - Fridge
   - PaperPlane
   - Totem
+  - Botella2
+  - Jarra
+  - Silla
+  - Mesilla
+  - Taquilla
+  - MiniArmario
+  - Barril1
+  - Taburete
+  - Caja
+  - Sofa
+  - Sillon
+  - Cama
+  - Barril2
+  - Libro
+  - Estanteria
+  - Lampara
+  - Mesa
+  - Pale
+  - Noodles
+  - Colchon
+  - Armario
+  - Basura
+  - Botella1
+  - Bombona
+  - Cono
+  - Maceta
+  - Lata
   layers:
   - Default
   - TransparentFX

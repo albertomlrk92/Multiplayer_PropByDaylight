@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 591220992797873581}
   m_Layer: 0
   m_Name: Jarra
-  m_TagString: Untagged
+  m_TagString: Jarra
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
