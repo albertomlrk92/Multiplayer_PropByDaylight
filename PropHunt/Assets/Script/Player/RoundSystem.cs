@@ -73,6 +73,8 @@ public class RoundSystem : NetworkBehaviour
 
     private void SelectHunter()
     {
+        
+
         if(networkManager.numPlayers > 1)
         {
             networkManager.playerPrefab = propPrefab;
