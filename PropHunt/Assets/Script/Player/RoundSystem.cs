@@ -20,6 +20,8 @@ public class RoundSystem : NetworkBehaviour
     private bool victoryProps = false;
     private bool doorsOpen = false;
     private int randomHunter;
+    [SerializeField]
+    private GameObject hunterPrefab;
 
     bool preround = true;
     private float roundTime = 15f;
@@ -46,7 +48,7 @@ public class RoundSystem : NetworkBehaviour
         randomHunter = Random.Range(1, networkManager.numPlayers);
         StartCoroutine(RoundTimer());
 
-        networkManager.spawnPrefabs.Clear();
+        //networkManager.playerPrefab.
 
         //scheme: wait time --> pre round --> round--> finish round-->Restart
         
@@ -56,6 +58,11 @@ public class RoundSystem : NetworkBehaviour
 
     private void SelectHunter()
     {
+        if(networkManager.numPlayers >= 1)
+        {
+            networkManager.playerPrefab = hunterPrefab;
+            Debug.Log("Aqui el last player seria PROP");
+        }
         //turn it in hunter
         //currentPlayers[randomHunter-1].SetActive(false); //funciona
         
@@ -65,6 +72,7 @@ public class RoundSystem : NetworkBehaviour
     
     private void Update()
     {
+        SelectHunter();
         currentPlayers = GameObject.FindGameObjectsWithTag("Player");
         //CURRENT AMOUNT OF PLAYERS
         Debug.Log(" Numero de players a int  " + networkManager.numPlayers +
@@ -77,7 +85,7 @@ public class RoundSystem : NetworkBehaviour
         }
         else
         {
-            SelectHunter();
+            
         }
 
         CheckTotemsActive();
