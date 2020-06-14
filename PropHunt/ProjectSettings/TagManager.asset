@@ -36,6 +36,7 @@ TagManager:
   - Cono
   - Maceta
   - Lata
+  - Door
   layers:
   - Default
   - TransparentFX
