@@ -20,8 +20,10 @@ public class Totem : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Prop")
+        Debug.Log(other.tag);
+        if(other.tag == "Player")
         {
+            Debug.Log("Enter");
             other.GetComponent<TotemInteract>().canTotem = true;
             other.GetComponent<TotemInteract>().currentTotem = this.gameObject;
         }
@@ -29,7 +31,7 @@ public class Totem : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Prop")
+        if (other.tag == "Player")
         {
             other.GetComponent<TotemInteract>().canTotem = false;
             other.GetComponent<TotemInteract>().currentTotem = null;

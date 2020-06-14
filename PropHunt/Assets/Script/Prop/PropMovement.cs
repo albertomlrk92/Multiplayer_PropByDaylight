@@ -39,7 +39,6 @@ public class PropMovement : MonoBehaviour
         //Rotation VERTICAL, we will turn the camera in a vertical axis, why? We dont wanna turn the player vertically only camera.
         float xRot = Input.GetAxisRaw("Mouse Y");
         float cameraRotation = xRot * lookSensivility;
-        Debug.Log(cameraRotation);
 
         //Apply 
         motor.RotateCamera(cameraRotation);

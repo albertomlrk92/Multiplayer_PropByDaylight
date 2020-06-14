@@ -61,7 +61,7 @@ public class PropTransform : NetworkBehaviour
         Ray ray = new Ray(myCamera.transform.position,myCamera.transform.forward);
         RaycastHit hit = new RaycastHit();
         Debug.DrawRay(ray.origin, ray.direction * distanceOfTransform, Color.red, 2.0f);
-        if (Physics.Raycast(ray, out hit, distanceOfTransform))
+        if (Physics.Raycast(ray, out hit, distanceOfTransform,LayerMask.GetMask("Objects")))
         {
             Debug.Log("I'm looking at " + hit.transform.name);
             GameObject prefab = GetPrefab(hit.transform.tag);
