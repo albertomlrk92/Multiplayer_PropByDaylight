@@ -19,7 +19,7 @@ public class RoundSystem : NetworkBehaviour
     private bool victoryHunter = false;
     private bool victoryProps = false;
     private bool doorsOpen = false;
-
+    private int randomHunter;
 
     bool preround = true;
     private float roundTime = 15f;
@@ -37,34 +37,46 @@ public class RoundSystem : NetworkBehaviour
         }
 
         totemsInScene = GameObject.FindGameObjectsWithTag("Totem");
+
     }
 
     private void Start()
     {
         networkManager = NetworkManager.singleton;
+        randomHunter = Random.Range(1, networkManager.numPlayers);
         StartCoroutine(RoundTimer());
+         
+        //networkManager.spawnPrefabs. ???
+
+        //scheme: wait time --> pre round --> round--> finish round-->Restart
         
+        //if wait time hits 0 or numPlayers == roomSize
+        //SelectHunter();
     }
+
+    private void SelectHunter()
+    {
+        //turn it in hunter
+        //currentPlayers[randomHunter-1].SetActive(false); //funciona
+        
+        //disable prop components and enable hunter ones?
+    }
+
     private void Update()
     {
         currentPlayers = GameObject.FindGameObjectsWithTag("Player");
-        //players = gameObject.GetComponents<PlayerManager>();
-        //CURRENT AMOUNT OF PLAUYERS
-        Debug.Log(" Numero de players en la escena int  " + networkManager.numPlayers +
+        //CURRENT AMOUNT OF PLAYERS
+        Debug.Log(" Numero de players a int  " + networkManager.numPlayers +
                     "numero de tags con player: " + currentPlayers.Length);
-        //for(int i =0; i < currentPlayers.Length; i++ )
-        //{
-        //    if(currentPlayers[i].GetComponent<PlayerManager>().isDead)
-        //    {
-
-        //    }
-        //}
-
 
         if(preround ==false)
         {
             roundTime -= Time.deltaTime;
-            Debug.Log(roundTime);
+            //Debug.Log(roundTime);
+        }
+        else
+        {
+            SelectHunter();
         }
 
         CheckTotemsActive();
@@ -74,30 +86,26 @@ public class RoundSystem : NetworkBehaviour
         {
             Debug.Log("Doors Open!");
         }
-        else
-        {
-            Debug.Log("Doors Closed!");
-        }
         
     }
     public void CheckTotemsActive()
     {
-        //foreach (GameObject go in totemsInScene)
-        //{
-        //    if (go.GetComponent<Totem>().active != true)
-        //    {
-        //        doorsOpen = true;
-        //        Debug.Log("DOORS OPEN!");
-        //    }
-        //}
-
-        for(int i= 0; i<totemsInScene.Length;i++)
+        foreach (GameObject go in totemsInScene) //this only works if all totems are active, so the doors will open then.
         {
-            if(totemsInScene[i].GetComponent<Totem>().active)
+            if (go.GetComponent<Totem>().active == true)
             {
-                numberOfTotemsActive++;
+                doorsOpen = true;
+                Debug.Log("DOORS OPEN!");
             }
         }
+        //for (int i= 0; i<totemsInScene.Length;i++)
+        //{
+
+        //    if(totemsInScene[i].GetComponent<Totem>().active)
+        //    {
+        //        numberOfTotemsActive++;
+        //    }
+        //}
     }
     public void CheckIfAllDead()
     {
@@ -116,10 +124,13 @@ public class RoundSystem : NetworkBehaviour
             }
 
         }
+
+        //Check if round timer hits 0
         if(roundTime <= 0f && !victoryProps)
         {
             victoryHunter = true;
         }
+        //victory, then reload scene and start new round
         if (victoryHunter == true) 
             Debug.Log("HUNTER WON!");
 
