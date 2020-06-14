@@ -22,9 +22,7 @@ public class SimpleMasMov : MonoBehaviour
     public float conoMass;
     public float estanteriaMass;
     public float jarraMass;
-    public float ladrilloMass;
-    public float lataArrugadaMass;
-    public float lataEnteraMass;
+    public float lataMass;
     public float libroMass;
     public float lamparaMass;
     public float macetaMass;
@@ -128,16 +126,10 @@ public class SimpleMasMov : MonoBehaviour
                 break;
             case "Jarra":
                 mass = jarraMass;
-                break;
-            case "Ladrillo":
-                mass = ladrilloMass;
-                break;            
-            case "LataArrugada":
-                mass = lataArrugadaMass;
-                break;            
-            case "LataEntera":
-                mass = lataEnteraMass;
-                break;            
+                break;       
+            case "Lata":
+                mass = lataMass;
+                break;              
             case "Libro":
                 mass = libroMass;
                 break;

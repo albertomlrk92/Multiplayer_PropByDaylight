@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EscenaEdu.unity
     guid: 369f99c59d5cbb04dbb41ae2d653539b
+  - enabled: 1
+    path: Assets/Scenes/EscenaProp.unity
+    guid: 29bcc2d481a518d4c99363a4b7f848b7
   m_configObjects: {}
