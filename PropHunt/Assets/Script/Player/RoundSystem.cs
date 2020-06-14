@@ -45,8 +45,8 @@ public class RoundSystem : NetworkBehaviour
         networkManager = NetworkManager.singleton;
         randomHunter = Random.Range(1, networkManager.numPlayers);
         StartCoroutine(RoundTimer());
-         
-        //networkManager.spawnPrefabs. ???
+
+        networkManager.spawnPrefabs.Clear();
 
         //scheme: wait time --> pre round --> round--> finish round-->Restart
         
@@ -62,6 +62,7 @@ public class RoundSystem : NetworkBehaviour
         //disable prop components and enable hunter ones?
     }
 
+    
     private void Update()
     {
         currentPlayers = GameObject.FindGameObjectsWithTag("Player");
