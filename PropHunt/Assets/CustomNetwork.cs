@@ -14,6 +14,7 @@ public class CustomNetwork : NetworkManager
     {
         selectedChar = characters[i];
 
+
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
