@@ -49,7 +49,7 @@ public class RoundSystem : NetworkBehaviour
         {
             instance = this;
         }
-
+        
         totemsInScene = GameObject.FindGameObjectsWithTag("Totem");
         
     }
@@ -57,11 +57,11 @@ public class RoundSystem : NetworkBehaviour
     private void Start()
     {
         networkManager = NetworkManager.singleton;
-        randomHunter = Random.Range(1, networkManager.numPlayers);
-
+        //randomHunter = Random.Range(1, networkManager.numPlayers);
+        
         StartCoroutine(RoundTimer());
 
-        networkManager.playerPrefab = propPrefab;
+        //networkManager.playerPrefab = propPrefab;
 
         //scheme: wait time --> pre round --> round--> finish round-->Restart
         
@@ -71,15 +71,15 @@ public class RoundSystem : NetworkBehaviour
 
     private void SelectHunter()
     {
-        if(isLocalPlayer)
-        {
-            if (isServer)
-         {
-                    networkManager.playerPrefab = hunterPrefab;
-             //networkManager.spawnPrefabs.;
-                Debug.Log("Aqui el last player seria PROP");
-             }
-        }
+        //if(isLocalPlayer)
+        //{
+        //    if (isServer)
+        // {
+        //            networkManager.playerPrefab = hunterPrefab;
+        //     //networkManager.spawnPrefabs.;
+        //        Debug.Log("Aqui el last player seria PROP");
+        //     }
+        //}
         
         //currentPlayers[randomHunter].
 
@@ -100,11 +100,11 @@ public class RoundSystem : NetworkBehaviour
         //}
         //Debug.Log(currentPlayers.Length);
         //When the first player enters, he will be Hunter,then, the next ones will be props
-        SelectHunter();
-        if (isServer)
-        {
-            networkManager.playerPrefab = hunterPrefab;
-        }
+        //SelectHunter();
+        //if (isServer)
+        //{
+        //    networkManager.playerPrefab = hunterPrefab;
+        //}
 
 
             currentPlayers = GameObject.FindGameObjectsWithTag("Player");
