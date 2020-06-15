@@ -34,6 +34,7 @@ public class RoundSystem : NetworkBehaviour
 
     bool preround = true;
     bool inPreparationTime = true;
+    [SyncVar]
     private float roundTime = 15f;
 
 
@@ -70,13 +71,16 @@ public class RoundSystem : NetworkBehaviour
 
     private void SelectHunter()
     {
-
-        if (isServer)
+        if(isLocalPlayer)
         {
-            networkManager.playerPrefab = hunterPrefab;
-            //networkManager.spawnPrefabs.;
-            Debug.Log("Aqui el last player seria PROP");
+            if (isServer)
+         {
+                    networkManager.playerPrefab = hunterPrefab;
+             //networkManager.spawnPrefabs.;
+                Debug.Log("Aqui el last player seria PROP");
+             }
         }
+        
         //currentPlayers[randomHunter].
 
 
@@ -97,10 +101,13 @@ public class RoundSystem : NetworkBehaviour
         //Debug.Log(currentPlayers.Length);
         //When the first player enters, he will be Hunter,then, the next ones will be props
         SelectHunter();
+        if (isServer)
+        {
+            networkManager.playerPrefab = hunterPrefab;
+        }
 
 
-
-        currentPlayers = GameObject.FindGameObjectsWithTag("Player");
+            currentPlayers = GameObject.FindGameObjectsWithTag("Player");
         //CURRENT AMOUNT OF PLAYERS
         //Debug.Log(" Numero de players a int  " + networkManager.numPlayers +"numero de tags con player: " + currentPlayers.Length);
 
