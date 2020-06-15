@@ -74,8 +74,10 @@ public class RoundSystem : NetworkBehaviour
         if (networkManager.numPlayers > 1)
         {
             networkManager.playerPrefab = propPrefab;
+            //networkManager.spawnPrefabs.;
             Debug.Log("Aqui el last player seria PROP");
         }
+        //currentPlayers[randomHunter].
 
 
         //disable prop components and enable hunter ones?
@@ -225,6 +227,7 @@ public class RoundSystem : NetworkBehaviour
         //networkManager.ServerChangeScene("EscenaEdu");
         //networkManager.StopServer();
     }
+
 
     
 
