@@ -13,6 +13,7 @@ public class CustomNetwork : NetworkManager
     public void SelectCharacter(int i)
     {
         selectedChar = characters[i];
+
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
