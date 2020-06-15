@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1077595618377193068
+--- !u!1 &5912498546998184646
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4608828176068299258}
-  - component: {fileID: 1448291264875968866}
-  - component: {fileID: 8617970779836201683}
+  - component: {fileID: 2442545541580756885}
   m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
+  m_Name: GameObject
+  m_TagString: Basura
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4608828176068299258
+--- !u!4 &2442545541580756885
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077595618377193068}
-  m_LocalRotation: {x: 0.10253042, y: -0, z: -0, w: 0.9947299}
-  m_LocalPosition: {x: 0, y: 0.0111, z: -0.0325}
+  m_GameObject: {fileID: 5912498546998184646}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1802258784844171946}
+  m_Children:
+  - {fileID: 5254116719727987146}
+  m_Father: {fileID: 3957387061971742293}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6853585830033151244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7934620507641072282}
+  - component: {fileID: 5040067543362877954}
+  - component: {fileID: 2770163758330296755}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7934620507641072282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853585830033151244}
+  m_LocalRotation: {x: 0.10253042, y: -0, z: -0, w: 0.9947299}
+  m_LocalPosition: {x: 0, y: 0.22, z: -1.08}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_Children: []
+  m_Father: {fileID: 3957387061971742293}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 11.77, y: 0, z: 0}
---- !u!20 &1448291264875968866
+--- !u!20 &5040067543362877954
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077595618377193068}
+  m_GameObject: {fileID: 6853585830033151244}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -75,15 +106,15 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8617970779836201683
+--- !u!81 &2770163758330296755
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077595618377193068}
+  m_GameObject: {fileID: 6853585830033151244}
   m_Enabled: 1
---- !u!1 &3411952840768239801
+--- !u!1 &7294872214572181155
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,10 +122,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1802258784844171946}
-  - component: {fileID: 7231072841275928732}
-  - component: {fileID: 3991709914798099557}
-  - component: {fileID: 7455294085312586227}
+  - component: {fileID: 3957387061971742293}
   m_Layer: 0
   m_Name: Basura
   m_TagString: Basura
@@ -102,36 +130,70 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1802258784844171946
+--- !u!4 &3957387061971742293
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3411952840768239801}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00029356033, y: 0.01606919, z: 0.000319995}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_GameObject: {fileID: 7294872214572181155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.07, z: 3.32}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4608828176068299258}
+  - {fileID: 2442545541580756885}
+  - {fileID: 7934620507641072282}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7231072841275928732
+--- !u!1 &9129085106215271385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5254116719727987146}
+  - component: {fileID: 3868972436730737660}
+  - component: {fileID: 7389791837358591749}
+  - component: {fileID: 3935638073291154067}
+  m_Layer: 0
+  m_Name: Basura
+  m_TagString: Basura
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5254116719727987146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129085106215271385}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_Children: []
+  m_Father: {fileID: 2442545541580756885}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3868972436730737660
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3411952840768239801}
+  m_GameObject: {fileID: 9129085106215271385}
   m_Mesh: {fileID: 2540817853737639666, guid: c6d3c5ae16d0979468c4d35a05749c6b, type: 3}
---- !u!23 &3991709914798099557
+--- !u!23 &7389791837358591749
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3411952840768239801}
+  m_GameObject: {fileID: 9129085106215271385}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -164,13 +226,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &7455294085312586227
+--- !u!64 &3935638073291154067
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3411952840768239801}
+  m_GameObject: {fileID: 9129085106215271385}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
