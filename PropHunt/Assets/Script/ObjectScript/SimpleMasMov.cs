@@ -47,6 +47,17 @@ public class SimpleMasMov : MonoBehaviour
 
     private Vector3 vel = new Vector3(0.0f, 0.0f, 0.0f);
 
+
+    [SerializeField]
+    private float jumpForce = 1000f;
+
+    [Header("Spring Options")]
+    [SerializeField]
+    private float jointSpring = 20f;
+    [SerializeField]
+    private float jointMaxForce = 40f;
+
+    private ConfigurableJoint joint;
     private Rigidbody rb;
     private float mass;
     private PlayerMotorController motor;
@@ -54,6 +65,8 @@ public class SimpleMasMov : MonoBehaviour
     void Start()
     {
         motor = GetComponent<PlayerMotorController>();
+        joint = GetComponent<ConfigurableJoint>();
+        SetJointSettings(jointSpring);
     }
 
     // Update is called once per frame
@@ -83,6 +96,27 @@ public class SimpleMasMov : MonoBehaviour
         //Apply 
         motor.RotateCamera(cameraRotation);
 
+        Vector3 jump = Vector3.zero;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jump = Vector3.up * jumpForce;
+            SetJointSettings(0f);
+        }
+        else
+        {
+            SetJointSettings(jointSpring);
+
+        }
+
+        motor.ApplyJump(jump);
+    }
+    private void SetJointSettings(float _jointSpring)
+    {
+        joint.yDrive = new JointDrive
+        {
+            positionSpring = jointSpring,
+            maximumForce = jointMaxForce
+        };
     }
     public void changeRbattributes(string prefab)
     {
@@ -185,6 +219,7 @@ public class SimpleMasMov : MonoBehaviour
     private void OnEnable()
     {
         rb = this.GetComponent<Rigidbody>();
+        rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 }
