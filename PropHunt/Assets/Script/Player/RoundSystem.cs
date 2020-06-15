@@ -60,7 +60,7 @@ public class RoundSystem : NetworkBehaviour
 
         StartCoroutine(RoundTimer());
 
-        networkManager.playerPrefab = hunterPrefab;
+        networkManager.playerPrefab = propPrefab;
 
         //scheme: wait time --> pre round --> round--> finish round-->Restart
         
@@ -71,9 +71,9 @@ public class RoundSystem : NetworkBehaviour
     private void SelectHunter()
     {
 
-        if (networkManager.numPlayers > 1)
+        if (isServer)
         {
-            networkManager.playerPrefab = propPrefab;
+            networkManager.playerPrefab = hunterPrefab;
             //networkManager.spawnPrefabs.;
             Debug.Log("Aqui el last player seria PROP");
         }
@@ -96,7 +96,7 @@ public class RoundSystem : NetworkBehaviour
         //}
         //Debug.Log(currentPlayers.Length);
         //When the first player enters, he will be Hunter,then, the next ones will be props
-        //SelectHunter();
+        SelectHunter();
 
 
 

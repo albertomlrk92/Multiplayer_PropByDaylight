@@ -5,26 +5,26 @@ using UnityEngine.Networking;
 
 public class CustomNetwork : NetworkManager
 {
-    [SerializeField]
-    GameObject[] characters;
 
-    private GameObject selectedChar;
+    List<GameObject> players = new List<GameObject>();
 
-    public void SelectCharacter(int i)
-    {
-        selectedChar = characters[i];
-
-
-    }
+    public GameObject hunterPrefab;
+    int count = 0;
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        if (selectedChar == null)
-            selectedChar = characters[0];
-        Debug.LogError("OnServerAddPlayer");
-        GameObject p = (GameObject)GameObject.Instantiate(selectedChar, CustomNetwork.singleton.GetStartPosition().position, CustomNetwork.singleton.GetStartPosition().rotation);
-        NetworkServer.AddPlayerForConnection(conn, p, playerControllerId);
-        //GetComponent<ChoosePlayer>().enabled = false;
+        if(numPlayers > count)
+        {
+            playerPrefab = hunterPrefab;
+        }
+       
+       
+        GameObject player = (GameObject)Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        players.Add(player);
+        Debug.Log("Se ha añadidio un player " + player + "count: " + count);
+        count++;
+        //player.GetComponent<Player>().color = Color.red;
+        NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
 
 

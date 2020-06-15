@@ -1580,9 +1580,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  characters:
-  - {fileID: 1106811735538964734, guid: bcbbfaed43aa21b46909afef14509c91, type: 3}
-  - {fileID: 6899596836907569003, guid: 2c2a332d60f36a4468d7c060283c4211, type: 3}
+  hunterPrefab: {fileID: 0}
 --- !u!4 &1630742300
 Transform:
   m_ObjectHideFlags: 0
