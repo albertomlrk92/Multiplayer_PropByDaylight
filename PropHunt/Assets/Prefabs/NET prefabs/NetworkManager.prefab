@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 7675783459759401127}
   - component: {fileID: 7675783459759401124}
   - component: {fileID: 7675783459759401125}
+  - component: {fileID: 784824075}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7675783459759401127
 Transform:
   m_ObjectHideFlags: 0
@@ -53,8 +54,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 6899596836907569003, guid: 2c2a332d60f36a4468d7c060283c4211,
-    type: 3}
+  m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: Lobby
@@ -130,6 +130,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
-  showGUI: 1
+  showGUI: 0
   offsetX: 0
   offsetY: 0
+--- !u!114 &784824075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675783459759401146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e740ccef93c5523428a4a7bde4228748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomSize: 6

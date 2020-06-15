@@ -1302,6 +1302,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7675783459759401124, guid: ab60ba5e95912de49a25bdd953a903e1,
+        type: 3}
+      propertyPath: m_PlayerPrefab
+      value: 
+      objectReference: {fileID: 6899596836907569003, guid: 2c2a332d60f36a4468d7c060283c4211,
+        type: 3}
     - target: {fileID: 7675783459759401125, guid: ab60ba5e95912de49a25bdd953a903e1,
         type: 3}
       propertyPath: showGUI
