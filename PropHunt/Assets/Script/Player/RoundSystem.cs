@@ -107,7 +107,7 @@ public class RoundSystem : NetworkBehaviour
         //}
 
 
-            currentPlayers = GameObject.FindGameObjectsWithTag("Player");
+        currentPlayers = GameObject.FindGameObjectsWithTag("Player");
         //CURRENT AMOUNT OF PLAYERS
         //Debug.Log(" Numero de players a int  " + networkManager.numPlayers +"numero de tags con player: " + currentPlayers.Length);
 
