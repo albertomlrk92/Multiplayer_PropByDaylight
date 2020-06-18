@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-[RequireComponent(typeof(PlayerSetupNet))]
+[RequireComponent(typeof(PlayerSetupNet))] //Asignamos primero el ID del player
 public class PlayerManager : NetworkBehaviour
 {
     [SyncVar]
@@ -15,11 +15,11 @@ public class PlayerManager : NetworkBehaviour
     }
 
     [SerializeField]
-    private Behaviour[] disableOnDeath;
+    private Behaviour[] disableOnDeath;  //desactivar componentes
     private bool[] wasEnabled;
 
     [SerializeField]
-    private GameObject[] disableGameObjectsOnDeath;
+    private GameObject[] disableGameObjectsOnDeath; //Desactivar gameobjects.
 
     private bool firstSetup = true;
 
@@ -30,7 +30,7 @@ public class PlayerManager : NetworkBehaviour
     private int currentHealth;
     
 
-    public float GetHealthPct()
+    public float GetHealthPct() //% vida
         {
             return (float) currentHealth / maxHealth;
         }
@@ -41,8 +41,8 @@ public class PlayerManager : NetworkBehaviour
         if (isLocalPlayer)
         {
             //Switch cameras
-            GameManager.instance.setSceneCameraActive(false);
-            GetComponent<PlayerSetupNet>().playerUIInstance.SetActive(true);
+            GameManager.instance.setSceneCameraActive(false); //desactivate camera
+            GetComponent<PlayerSetupNet>().playerUIInstance.SetActive(true); //activar ui
         }
 
         CmdBroadCastNewPlayerSetup();
@@ -68,7 +68,7 @@ public class PlayerManager : NetworkBehaviour
             firstSetup = false;
         }
 
-        SetDefaults();
+        SetDefaults(); //set up player full health y con componentes todo activado.
     }
 
     void Update()
@@ -82,7 +82,7 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
+    [ClientRpc] //Recibe daño desde el servidor
     public void RpcTakeDamage(int _amount)
     {
         if (isDead) return;
@@ -90,6 +90,7 @@ public class PlayerManager : NetworkBehaviour
         currentHealth -= _amount;
 
         Debug.Log(transform.name + "now has" + currentHealth + "health");
+
         if(currentHealth <= 0)
         {
             Die();
@@ -103,17 +104,17 @@ public class PlayerManager : NetworkBehaviour
 
         //Disable components
 
-        for(int i = 0; i < disableOnDeath.Length; i++)
+        for(int i = 0; i < disableOnDeath.Length; i++) //Componentes
         {
             disableOnDeath[i].enabled = false;
         }
 
-        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++)
+        for (int i = 0; i < disableGameObjectsOnDeath.Length; i++) //Gameobjects
         {
             disableGameObjectsOnDeath[i].SetActive(false);
         }
 
-        Collider _col = GetComponent<Collider>();
+        Collider _col = GetComponent<Collider>(); //Collider
         if (_col != null)
         {
             _col.enabled = false;
@@ -121,8 +122,8 @@ public class PlayerManager : NetworkBehaviour
 
         if(isLocalPlayer)
         {
-            GameManager.instance.setSceneCameraActive(true);
-            GetComponent<PlayerSetupNet>().playerUIInstance.SetActive(false);
+            GameManager.instance.setSceneCameraActive(true); //
+            GetComponent<PlayerSetupNet>().playerUIInstance.SetActive(false); //desactivar
         }
 
         Debug.Log(transform.name + " is deadd");
@@ -137,8 +138,8 @@ public class PlayerManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(GameManager.instance.matchSettings.respawnTime);
 
-        
-        Transform _startPoint = NetworkManager.singleton.GetStartPosition();
+        //spawn point
+        Transform _startPoint = NetworkManager.singleton.GetStartPosition(); //recibe los spawnpoint, position y rotation
         transform.position = _startPoint.position;
         transform.rotation = _startPoint.rotation;
 
@@ -147,6 +148,8 @@ public class PlayerManager : NetworkBehaviour
 
         Debug.Log(transform.name + " respawned");
     }
+
+
     public void SetDefaults()
     {
         isDead = false;

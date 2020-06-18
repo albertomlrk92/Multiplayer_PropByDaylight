@@ -9,16 +9,16 @@ using UnityEngine.Networking;
 public class PlayerSetupNet : NetworkBehaviour
 {
     [SerializeField]
-    Behaviour[] componentsToDisable;
+    Behaviour[] componentsToDisable; //desactivar el behaviour de otras entidades en escena, behaviour que tu mismo tienes.
 
     [SerializeField]
     string remoteLayerName = "RemotePlayer";
 
     [SerializeField]
-    string dontDrawLayerName = "DontDraw";
+    string dontDrawLayerName = "DontDraw"; //dont draw para ti, SOlO PARA TI
 
     [SerializeField]
-    GameObject playerGraphics;
+    GameObject playerGraphics; //modelo 
     [SerializeField]
     GameObject playerUIprefab;
 
@@ -50,12 +50,13 @@ public class PlayerSetupNet : NetworkBehaviour
 
             ui.SetPlayer(GetComponent<PlayerManager>());
 
+            //enable all the components y camara on y todo
             GetComponent<PlayerManager>().SetupPlayer();
         }
 
         
     }
-
+    //le pasas un gameobject y le cambia la layer como quieras.
     void SetLayerRecursively(GameObject obj, int newLayer)
     {
         obj.layer = newLayer;
@@ -66,7 +67,7 @@ public class PlayerSetupNet : NetworkBehaviour
         }
     }
 
-    public override void OnStartClient()
+    public override void OnStartClient() //funcion del networkk manager.
     {
         base.OnStartClient();
 
